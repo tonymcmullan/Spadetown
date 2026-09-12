@@ -38,11 +38,9 @@ audio {
 <h1>SPADETOWN</h1>
 <p>Charity Album</p>
 
-<h3 id="trackTitle">01 If I Said You Had A Beautiful Body</h3>
+<h3 id="trackTitle"></h3>
 
-<audio id="player" controls>
-  Your browser does not support audio playback.
-</audio>
+<audio id="player" controls preload="auto"></audio>
 
 </div>
 
@@ -59,20 +57,32 @@ const tracks = [
 ];
 
 let currentTrack = 0;
+let playNextWhenReady = false;
 
 const player = document.getElementById("player");
 const trackTitle = document.getElementById("trackTitle");
 
-function loadTrack(index) {
+function loadTrack(index, autoplay = false) {
   currentTrack = index;
-  player.src = tracks[index].url;
   trackTitle.textContent = tracks[index].title;
+  playNextWhenReady = autoplay;
+
+  player.src = tracks[index].url;
+  player.load();
 }
+
+player.addEventListener("canplay", function() {
+  if (playNextWhenReady) {
+    playNextWhenReady = false;
+    player.play().catch(function(error) {
+      console.log("Playback blocked:", error);
+    });
+  }
+});
 
 player.addEventListener("ended", function() {
   if (currentTrack < tracks.length - 1) {
-    loadTrack(currentTrack + 1);
-    player.play();
+    loadTrack(currentTrack + 1, true);
   }
 });
 

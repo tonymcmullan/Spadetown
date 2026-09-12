@@ -4,98 +4,340 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Spadetown</title>
+<title>Spadetown – 24 Classic Tracks</title>
 
 <style>
-body {
-  font-family: Arial, sans-serif;
-  background: #f2f2f2;
-  margin: 0;
-  padding: 20px;
-  text-align: center;
+
+* {
+  box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+  padding: 18px;
+  font-family: Georgia, "Times New Roman", serif;
+  color: #392719;
+  background:
+    linear-gradient(rgba(55,35,20,.25), rgba(55,35,20,.25)),
+    #8c765c;
+}
+
+/* MAIN ALBUM */
+
 .album {
-  max-width: 700px;
-  margin: auto;
-  background: white;
-  padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+  max-width: 760px;
+  margin: 0 auto;
+  background:
+    linear-gradient(
+      rgba(249,239,211,.96),
+      rgba(229,207,162,.96)
+    );
+  border: 5px double #6d4b28;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.4);
+  overflow: hidden;
+}
+
+/* HEADER */
+
+.hero {
+  text-align: center;
+  padding: 32px 20px 25px;
+  background:
+    radial-gradient(circle at top, #f8eac0 0%, #dbc392 70%, #c0a06d 100%);
+  border-bottom: 3px double #75502d;
+}
+
+.spade {
+  font-size: 30px;
+  margin-bottom: 4px;
 }
 
 h1 {
-  margin-bottom: 5px;
-  font-size: 36px;
+  margin: 0;
+  font-size: clamp(42px, 10vw, 72px);
+  letter-spacing: 3px;
+  color: #5d1f1f;
+  text-shadow:
+    1px 1px 0 #e5c77d,
+    2px 2px 0 #6f4a29;
 }
 
-.subtitle {
-  margin-top: 0;
-  font-size: 18px;
+.ornament {
+  font-size: 22px;
+  letter-spacing: 8px;
+  margin: 5px 0;
+  color: #74532f;
+}
+
+.tagline {
+  margin: 8px 0 0;
+  font-size: 19px;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.classic {
+  margin-top: 8px;
+  color: #8b2725;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* CHARITY MESSAGE */
+
+.charity {
+  text-align: center;
+  padding: 15px 15px 12px;
+  background: #6d2020;
+  color: #fff5d6;
+  border-top: 2px solid #c7a451;
+  border-bottom: 2px solid #c7a451;
+}
+
+.charity strong {
+  color: #f0d080;
+  font-size: 21px;
+}
+
+/* PLAYER */
+
+.player-area {
+  padding: 25px 22px 17px;
+  text-align: center;
+}
+
+.now-label {
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 12px;
+  color: #806545;
 }
 
 #trackTitle {
-  margin-top: 25px;
-  min-height: 28px;
+  color: #681f1f;
+  font-size: 22px;
+  min-height: 52px;
+  margin: 7px 0 12px;
 }
 
 audio {
   width: 100%;
-  margin-top: 12px;
+  max-width: 620px;
 }
 
 .controls {
-  margin: 18px 0;
+  margin-top: 17px;
 }
 
 button {
-  padding: 10px 18px;
-  margin: 5px;
+  border: 2px solid #714b27;
+  border-radius: 7px;
+  background: linear-gradient(#f3dfab, #d1ad65);
+  color: #422b18;
+  padding: 11px 19px;
+  margin: 4px;
+  font-family: Georgia, serif;
   font-size: 16px;
+  font-weight: bold;
   cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0,0,0,.2);
+}
+
+button:hover {
+  background: #f7e8bd;
+}
+
+.instructions {
+  margin-top: 14px;
+  font-size: 14px;
+  font-style: italic;
+  color: #715b44;
+}
+
+/* TRACK LIST */
+
+.track-section {
+  padding: 0 22px 28px;
+}
+
+.track-heading {
+  text-align: center;
+  font-size: 24px;
+  color: #68201f;
+  margin: 15px 0 15px;
+  border-top: 1px solid #9b7a4a;
+  padding-top: 18px;
 }
 
 .tracklist {
-  text-align: left;
-  margin-top: 25px;
+  border: 2px solid #9a7949;
+  background: rgba(255,248,224,.65);
 }
 
 .track {
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+  padding: 12px 14px;
+  border-bottom: 1px solid #c8ad7a;
   cursor: pointer;
+  transition: background .15s;
+  font-size: 16px;
+}
+
+.track:last-child {
+  border-bottom: none;
 }
 
 .track:hover {
-  background: #eeeeee;
+  background: #ead8aa;
 }
 
 .nowplaying {
+  background: #7a2927 !important;
+  color: #fff3cf;
   font-weight: bold;
-  background: #e7e7e7;
 }
+
+.nowplaying::before {
+  content: "▶ ";
+  color: #e7c45c;
+}
+
+/* FOOTER */
+
+.footer {
+  text-align: center;
+  padding: 20px 12px;
+  background: #30251c;
+  color: #e9ce87;
+  font-size: 13px;
+  letter-spacing: 2px;
+  border-top: 3px solid #967044;
+}
+
+.footer-heart {
+  margin-top: 10px;
+  color: #fff1d3;
+  letter-spacing: 0;
+  font-size: 14px;
+}
+
+@media (max-width: 500px) {
+
+  body {
+    padding: 7px;
+  }
+
+  .player-area,
+  .track-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .track {
+    font-size: 15px;
+  }
+}
+
 </style>
 </head>
+
 
 <body>
 
 <div class="album">
 
-<h1>SPADETOWN</h1>
-<p class="subtitle">24 Track Charity Album</p>
+  <div class="hero">
 
-<h3 id="trackTitle"></h3>
+    <div class="spade">♠</div>
 
-<audio id="player" controls preload="auto"></audio>
+    <div class="ornament">❧ ─── ❧</div>
 
-<div class="controls">
-  <button onclick="previousTrack()">◀ Previous</button>
-  <button onclick="nextTrack()">Next ▶</button>
+    <h1>SPADETOWN</h1>
+
+    <div class="ornament">❧ ─ ♠ ─ ❧</div>
+
+    <div class="classic">24 CLASSIC TRACKS</div>
+
+    <p class="tagline">
+      Performed by Local Artistes
+    </p>
+
+  </div>
+
+
+  <div class="charity">
+    All Proceeds to<br>
+    <strong>The Dáire Rooney Appeal</strong><br>
+    ♥ Supporting Dáire and his family ♥
+  </div>
+
+
+  <div class="player-area">
+
+    <div class="now-label">Now Playing</div>
+
+    <h2 id="trackTitle"></h2>
+
+    <audio id="player"
+           controls
+           preload="auto"
+           playsinline>
+    </audio>
+
+    <div class="controls">
+
+      <button onclick="previousTrack()">
+        ◀ Previous
+      </button>
+
+      <button onclick="nextTrack()">
+        Next ▶
+      </button>
+
+    </div>
+
+    <div class="instructions">
+      Press Play once and the album will continue automatically.<br>
+      Or tap any song below to play it.
+    </div>
+
+  </div>
+
+
+  <div class="track-section">
+
+    <h2 class="track-heading">
+      ♠ Track List ♠
+    </h2>
+
+    <div class="tracklist"
+         id="trackList">
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+
+    MUSIC &nbsp; ★ &nbsp;
+    COMMUNITY &nbsp; ★ &nbsp;
+    SUPPORT &nbsp; ★ &nbsp;
+    SPADETOWN
+
+    <div class="footer-heart">
+      Thank you for supporting The Dáire Rooney Appeal
+    </div>
+
+  </div>
+
 </div>
 
-<div class="tracklist" id="trackList"></div>
 
-</div>
 
 <script>
 
@@ -223,36 +465,54 @@ url: "https://www.dropbox.com/scl/fi/e3k95sjgu9n6y3bxwd2o5/24-Welcome-As-The-Flo
 
 ];
 
+
 let currentTrack = 0;
 let autoplayWhenReady = false;
 
-const player = document.getElementById("player");
-const trackTitle = document.getElementById("trackTitle");
-const trackList = document.getElementById("trackList");
+const player =
+document.getElementById("player");
+
+const trackTitle =
+document.getElementById("trackTitle");
+
+const trackList =
+document.getElementById("trackList");
 
 
 function loadTrack(index, autoplay = false) {
 
-  if (index < 0 || index >= tracks.length) return;
+  if (index < 0 ||
+      index >= tracks.length) {
+    return;
+  }
 
   currentTrack = index;
 
-  trackTitle.textContent = tracks[index].title;
+  trackTitle.textContent =
+    tracks[index].title;
 
   autoplayWhenReady = autoplay;
 
-  player.src = tracks[index].url;
+  player.src =
+    tracks[index].url;
 
   player.load();
 
   updateTrackList();
+
 }
 
 
 function nextTrack() {
 
-  if (currentTrack < tracks.length - 1) {
-    loadTrack(currentTrack + 1, true);
+  if (currentTrack <
+      tracks.length - 1) {
+
+    loadTrack(
+      currentTrack + 1,
+      true
+    );
+
   }
 
 }
@@ -261,20 +521,31 @@ function nextTrack() {
 function previousTrack() {
 
   if (currentTrack > 0) {
-    loadTrack(currentTrack - 1, true);
+
+    loadTrack(
+      currentTrack - 1,
+      true
+    );
+
   }
 
 }
 
 
-player.addEventListener("canplay", function() {
+player.addEventListener(
+"canplay",
+function() {
 
   if (autoplayWhenReady) {
 
     autoplayWhenReady = false;
 
-    player.play().catch(function(error) {
-      console.log("Playback blocked:", error);
+    player.play()
+    .catch(function(error) {
+      console.log(
+        "Playback blocked:",
+        error
+      );
     });
 
   }
@@ -282,10 +553,18 @@ player.addEventListener("canplay", function() {
 });
 
 
-player.addEventListener("ended", function() {
+player.addEventListener(
+"ended",
+function() {
 
-  if (currentTrack < tracks.length - 1) {
-    loadTrack(currentTrack + 1, true);
+  if (currentTrack <
+      tracks.length - 1) {
+
+    loadTrack(
+      currentTrack + 1,
+      true
+    );
+
   }
 
 });
@@ -293,16 +572,27 @@ player.addEventListener("ended", function() {
 
 function createTrackList() {
 
-  tracks.forEach(function(track, index) {
+  tracks.forEach(
+  function(track, index) {
 
-    const item = document.createElement("div");
+    const item =
+      document.createElement("div");
 
     item.className = "track";
 
-    item.textContent = track.title;
+    item.textContent =
+      track.title;
 
-    item.onclick = function() {
+    item.onclick =
+    function() {
+
       loadTrack(index, true);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
     };
 
     trackList.appendChild(item);
@@ -314,14 +604,24 @@ function createTrackList() {
 
 function updateTrackList() {
 
-  const items = document.querySelectorAll(".track");
+  const items =
+  document.querySelectorAll(".track");
 
-  items.forEach(function(item, index) {
+  items.forEach(
+  function(item, index) {
 
     if (index === currentTrack) {
-      item.classList.add("nowplaying");
+
+      item.classList.add(
+        "nowplaying"
+      );
+
     } else {
-      item.classList.remove("nowplaying");
+
+      item.classList.remove(
+        "nowplaying"
+      );
+
     }
 
   });
@@ -330,6 +630,7 @@ function updateTrackList() {
 
 
 createTrackList();
+
 loadTrack(0);
 
 </script>

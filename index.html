@@ -22,6 +22,9 @@ body {
 h1 {
   margin-bottom: 5px;
 }
+#trackTitle {
+  margin-top: 20px;
+}
 audio {
   width: 100%;
   margin-top: 20px;
@@ -35,13 +38,46 @@ audio {
 <h1>SPADETOWN</h1>
 <p>Charity Album</p>
 
-<h3>01 If I Said You Had A Beautiful Body</h3>
+<h3 id="trackTitle">01 If I Said You Had A Beautiful Body</h3>
 
-<audio controls>
-  <source src="https://www.dropbox.com/scl/fi/nyuaevr1km97mfhpw4zke/01-If-I-Said-You-Had-A-Beautiful-Body.mp3?rlkey=wsuvmi7tvpijvw1t03vfsbewd&raw=1" type="audio/mpeg">
+<audio id="player" controls>
   Your browser does not support audio playback.
 </audio>
 
 </div>
+
+<script>
+const tracks = [
+  {
+    title: "01 If I Said You Had A Beautiful Body",
+    url: "https://www.dropbox.com/scl/fi/nyuaevr1km97mfhpw4zke/01-If-I-Said-You-Had-A-Beautiful-Body.mp3?rlkey=wsuvmi7tvpijvw1t03vfsbewd&raw=1"
+  },
+  {
+    title: "02 Little Old Wine Drinker Me",
+    url: "https://www.dropbox.com/scl/fi/5hhiremq71s0h8sa6ysvg/02-Little-Old-Wine-Drinker-Me.mp3?rlkey=ggj2h3i6yl3ydzl36rd18hii2&raw=1"
+  }
+];
+
+let currentTrack = 0;
+
+const player = document.getElementById("player");
+const trackTitle = document.getElementById("trackTitle");
+
+function loadTrack(index) {
+  currentTrack = index;
+  player.src = tracks[index].url;
+  trackTitle.textContent = tracks[index].title;
+}
+
+player.addEventListener("ended", function() {
+  if (currentTrack < tracks.length - 1) {
+    loadTrack(currentTrack + 1);
+    player.play();
+  }
+});
+
+loadTrack(0);
+</script>
+
 </body>
 </html>
